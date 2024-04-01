@@ -43,8 +43,18 @@ class Server:
         return data[start_index:end_index]
       
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
-      """ returns a dictionary containing key-value pairs."""
+          """ returns a dictionary containing key-value pairs."""
        page_data = self.get_page(page, page_size)
        start_index, end_index = index_range(page, page_size)
-       total_page = math.ceil(len(self.__dataset) / page_size)
-       
+       total_pages = math.ceil(len(self.__dataset) / page_size)
+           """ Dictionary for pagination. """
+       page_detail = 
+        {
+            'page_size': len(page_data),
+            'page': page,
+            'data': page_data,
+            'next_page': page + 1 if end < len(self.__dataset) else None,
+            'prev_page': page - 1 if start > 0 else None,
+            'total_pages': total_pages,
+                }
+                return page_detail
