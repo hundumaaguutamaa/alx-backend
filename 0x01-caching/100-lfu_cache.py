@@ -7,7 +7,7 @@ from base_caching import BaseCaching
 
 
 class LFUCache(BaseCaching):
-    """ LFU Caching implementation. """
+    """ LFU Caching system """
 
     def __init__(self):
         """ Initialize the LFU cache """
@@ -16,7 +16,11 @@ class LFUCache(BaseCaching):
         self.recency = OrderedDict()
 
     def put(self, key, item):
-        """ Adding an item in the cache """
+        """ Add an item in the cache
+        Args:
+            key: the key for the cache item
+            item: the value for the cache item
+        """
         if key is None or item is None:
             return
         
@@ -42,7 +46,12 @@ class LFUCache(BaseCaching):
             self.recency[key] = None
 
     def get(self, key):
-        """ Get an item by it's key """
+        """ Get an item by key
+        Args:
+            key: the key to retrieve from the cache
+        Returns:
+            The value of the key if it exists, otherwise None
+        """
         if key is None or key not in self.cache_data:
             return None
         
