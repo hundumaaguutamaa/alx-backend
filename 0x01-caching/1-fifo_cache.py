@@ -1,23 +1,24 @@
 #!/usr/bin/env python3
-""" LIFO Caching module
+""" FIFO Caching module
 
-This module defines the LIFOCache class which implements a Last In, First Out (LIFO) caching system. 
-The LIFOCache class inherits from BaseCaching and uses a dictionary to store cached items.
+This module defines the FIFOCache class which implements a First In, First Out (FIFO) caching system. 
+The FIFOCache class inherits from BaseCaching and uses a dictionary to store cached items. 
+Items are discarded in the order they were added when the cache exceeds its maximum size.
 """
 
 from base_caching import BaseCaching
 
 
-class LIFOCache(BaseCaching):
-    """ LIFO Caching system
+class FIFOCache(BaseCaching):
+    """ FIFO Caching system
 
-    This class provides a caching system that follows the Last In, First Out (LIFO) algorithm. 
-    When the cache exceeds its maximum size, the most recently added item is discarded. 
+    This class provides a caching system that follows the First In, First Out (FIFO) algorithm. 
+    When the cache exceeds its maximum size, the oldest item (the first item added) is discarded. 
     This class inherits from BaseCaching and uses the cache_data dictionary from the parent class.
     """
 
     def __init__(self):
-        """ Initialize the LIFO cache
+        """ Initialize the FIFO cache
 
         Calls the parent class's __init__ method to initialize cache_data.
         """
@@ -32,9 +33,8 @@ class LIFOCache(BaseCaching):
             item: The value for the cache item.
 
         This method adds an item to the cache. If the cache exceeds its maximum number of items 
-        (BaseCaching.MAX_ITEMS), the most recently added item is discarded according to 
-        the LIFO principle. If the item already exists, its value is updated and the key is 
-        moved to the end of the order list.
+        (BaseCaching.MAX_ITEMS), the oldest item (FIFO) is discarded. If the item already exists, 
+        its value is updated and the key is moved to the end of the order list.
         """
         if key is None or item is None:
             return
@@ -44,7 +44,7 @@ class LIFOCache(BaseCaching):
             self.order.remove(key)
         else:
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                discard = self.order.pop()
+                discard = self.order.pop(0)
                 del self.cache_data[discard]
                 print(f"DISCARD: {discard}")
 
@@ -68,4 +68,3 @@ class LIFOCache(BaseCaching):
             return None
         
         return self.cache_data[key]
-
