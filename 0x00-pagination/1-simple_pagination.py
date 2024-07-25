@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Simple pagination.
+"""Simple pagination sample.
 """
 import csv
 from typing import List, Tuple
@@ -40,7 +40,7 @@ class Server:
             with open(self.DATA_FILE) as f:
                 reader = csv.reader(f)
                 dataset = [row for row in reader]
-            self.__dataset = dataset[1:]
+            self.__dataset = dataset[1:]  # Skip the header row
 
         return self.__dataset
 
@@ -54,14 +54,14 @@ class Server:
         Returns:
             List[List]: The page of the dataset.
         """
-        assert isinstance(page, int) and page > 0,  
-        assert isinstance(page_size, int) and page_size > 0,
+        assert isinstance(page, int) and page > 0, "page must be an integer greater than 0"
+        assert isinstance(page_size, int) and page_size > 0, "page_size must be an integer greater than 0"
         
-        dataset = self.dataset()
         start, end = index_range(page, page_size)
+        dataset = self.dataset()
         
         if start >= len(dataset):
             return []
 
         return dataset[start:end]
-
+        
