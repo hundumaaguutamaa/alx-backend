@@ -1,0 +1,18 @@
+# Translations template for My Flask App.
+# Copyright (C) 2024 My Organization
+# This file is distributed under the same license as the My Flask App project.
+# Hunduma Tesfaye <hundumaa.guutamaa@gmail.com>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: My Flask App 1.0\n"
+"Report-Msgid-Bugs-To: hundumaa.guutamaa@gmail.com\n"
+"POT-Creation-Date: 2024-07-31 12:34+0000\n"
+"PO-Revision-Date: 2024-07-31 12:34+0000\n"
+"Last-Translator: Hunduma Tesfaye <hundumaa.guutamaa@gmail.com>\n"
+"Language-Team: English <hundumaa.guutamaa@gmail.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
